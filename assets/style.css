@@ -42,9 +42,10 @@ h2 {
     padding: 8px;
     border-radius: 5px;
     border: 1px solid grey;
+    width: 90%;
 }
 
-button {
+#searchbtn {
     margin: 5px;
     background-color: rgb(103, 173, 237);
     color: var(--whiteText);
@@ -52,16 +53,17 @@ button {
     padding: 5px;
     border-radius: 5px;
     box-shadow: 0px 1px grey;
+    width: 100%;
 }
 
-button:hover {
+#searchbtn:hover {
     background-color: rgb(136, 188, 236);
     font-size: 14px;
     box-shadow: 0px 2px grey;
     transition: all .3s ease-in-out;
 }
 
-button:active {
+#searchbtn:active {
     font-size: 13px;
     box-shadow: 0px 0px grey;
     transition: all .1s ease-in-out;
@@ -84,6 +86,21 @@ button:active {
     font-size: 13px;
     text-align: center;
     background-color: rgb(191, 191, 191);
+    box-shadow: 0px 1px grey;
+}
+
+.search-history li:hover {
+    background-color: rgb(213, 210, 210);
+    box-shadow: 0px 2px grey;
+    transition: all .3s ease-in-out;
+    font-size: 14px;
+}
+
+.search-history li:active {
+    rgb(213, 210, 210);
+    font-size: 13px;
+    box-shadow: 0px 0px grey;
+    transition: all .1s ease-in-out;
 }
 
 .current-weather {

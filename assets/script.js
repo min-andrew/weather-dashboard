@@ -14,7 +14,41 @@ fetch(queryURL)
 // search function 
 // 1. learn how to create search function
 // 2. create search history that saves a list underneath search bar
-// 2a create history through li for each city under ul(id=search-history) 
+// 2a create history through li for each city under ul(id=search-history)
+// 2aa create a way to cap search history to 10 
+// 2ab add addEventListener to the li elements 
+
+var searchSection = document.querySelector("#search");
+var searchHistory = document.querySelector(".search-history");
+var searchbtn = document.querySelector("#searchbtn");
+var searchResult = document.querySelector("#search-form");
+var historyArray = [];
+
+
+// provides value of search and saves the history in the search history section 
+function search() {
+    console.log(searchResult.value);
+    searchHistory.children[0].remove();
+    localStorage.setItem('searchhistory', searchResult.value);
+    var history = localStorage.getItem('searchhistory');
+    historyArray.push(history);
+    console.log(historyArray);
+
+    if (historyArray.length === 4){
+        historyArray.shift();
+    };
+    console.log(historyArray);
+    for (var x in historyArray) {
+        var historyresults = document.createElement('li');
+        historyresults.setAttribute("id", "search-history");
+        historyresults.textContent = historyArray[x];
+        searchHistory.append(historyresults);
+    };
+};
+
+// Gets the searchbtn to work with input
+searchbtn.addEventListener("click", search);
+
 
 // value from search function will fetch city temperature
 
