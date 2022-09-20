@@ -97,7 +97,6 @@ h2 {
 }
 
 .search-history li:active {
-    rgb(213, 210, 210);
     font-size: 13px;
     box-shadow: 0px 0px grey;
     transition: all .1s ease-in-out;
