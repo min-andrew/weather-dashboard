@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="./assets/style.css" />
-  </head>
-  <body>
-    <header>
-      <nav>
-        <h1>Weather Dashboard</h1>
-      </nav>
-    </header>
 
-    <main>
-      <section class="search">
-        <h2>Search for a City:</h2>
-        <form id="form">
-          <input id="search-form" type="text" placeholder="Search by City" />
-          <input id="searchbtn" type="button" value="Search" />
-        </form>
-        <ul class="search-history"></ul>
-      </section>
-      <section class="current-weather">
-        <article id="city-banner">
-          <h3 id="current-city">Search for a city!</h3>
-          <p id="temp">Temp:</p>
-          <p id="wind">Wind:</p>
-          <p id="humidity">Humitidy:</p>
-        </article>
-        <article id="cards-forecast">
-          <h3>5-Day Forecast:</h3>
-          <div id="cards-container"></div>
-        </article>
-      </section>
-    </main>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
 
-    <script src="./assets/script.js"></script>
-  </body>
+<body>
+  <header>
+    <nav>
+      <h1>Weather Dashboard</h1>
+    </nav>
+  </header>
+
+  <main>
+    <section class="search">
+      <h2>Search for a City:</h2>
+      <form id="form">
+        <input id="search-form" type="text" placeholder="Search by City" />
+        <input id="searchbtn" type="button" value="Search" />
+      </form>
+      <ul class="search-history"></ul>
+    </section>
+    <section class="current-weather">
+      <article id="city-banner">
+        <h3 id="current-city">Search for a city!</h3>
+        <p id="temp">Temp:</p>
+        <p id="wind">Wind:</p>
+        <p id="humidity">Humitidy:</p>
+      </article>
+      <article id="cards-forecast">
+        <h3>5-Day Forecast:</h3>
+        <div id="cards-container"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="./assets/script.js"></script>
+</body>
+
 </html>
