@@ -119,6 +119,15 @@ h2 {
     font-size: 13px;
 }
 
+#weather-icon {
+    display: flex;
+    flex-direction: row;
+}
+
+#icon {
+    display: none;
+}
+
 #current-city {
     margin: 5px;
     color: black;
