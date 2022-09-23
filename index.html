@@ -23,15 +23,15 @@
         <input id="search-form" type="text" placeholder="Search by City" />
         <input id="searchbtn" type="button" value="Search" />
       </form>
-      <ul class="search-history"></ul>
+      <form class="search-history"></form>
     </section>
     <section class="current-weather">
       <article id="city-banner">
-        <h3 id="current-city">Search for a city!</h3>
         <div id="weather-icon">
-          <p id="temp">Temp:</p>
+          <h3 id="current-city">Search for a city!</h3>
           <img id="icon" src="" alt="Weather icon">
         </div>
+        <p id="temp">Temp:</p>
         <p id="wind">Wind:</p>
         <p id="humidity">Humitidy:</p>
       </article>
@@ -42,6 +42,7 @@
     </section>
   </main>
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
   <script src="./assets/script.js"></script>
 </body>
 
