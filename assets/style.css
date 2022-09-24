@@ -154,8 +154,12 @@ h2 {
     flex-direction: row;
 }
 
-#card {
-    display: flex;
+.card1,
+.card2,
+.card3,
+.card4,
+.card5 {
+    display: none;
     flex-direction: column;
     list-style-type: none;
     color: var(--whiteText);
@@ -167,7 +171,7 @@ h2 {
     width: 100%;
 }
 
-#card li {
+li {
     padding: 5px;
     font-size: 13px;
 }

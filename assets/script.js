@@ -8,9 +8,9 @@ var city = "";
 // 2. create search history that saves a list underneath search bar +
 // 2a create history through li (id=historyresult) for each city under ul(id=search-history) +
 // 2aa create a way to cap search history to 10 +
-// 2ab add addEventListener to the li elements 
+// 2ab add addEventListener to the li elements -
 // 3. only cities provide values. Make it so that search of an invalid thing provides no information/ gives an error 
-// 2aba might need to change li into a input and the ul into form elements 
+// 2aba might need to change li into a input and the ul into form elements +
 
 var searchSection = document.querySelector("#search");
 var searchHistory = document.querySelector(".search-history");
@@ -25,10 +25,16 @@ var currentHumidity = document.querySelector("#humidity");
 var icon = document.querySelector("#icon");
 
 var cardsContainer = document.querySelector("#cards-container");
+var card1 = document.querySelector(".card1");
+var card2 = document.querySelector(".card2");
+var card3 = document.querySelector(".card3");
+var card4 = document.querySelector(".card4");
+var card5 = document.querySelector(".card5");
 
 
 // provides value of search and saves the history in the search history section 
-function search() {
+function search(event) {
+    event.preventDefault;
     console.log(searchResult.value);
     localStorage.setItem('searchhistory', searchResult.value);
     var history = localStorage.getItem('searchhistory');
@@ -39,6 +45,7 @@ function search() {
     historyresults.setAttribute("id", "historyResult " + searchResult.value);
     historyresults.textContent = history;
     searchHistory.append(historyresults);
+    historyresults.addEventListener("click", research);
 
     if (historyArray.length === 10) {
         historyArray.shift();
@@ -73,11 +80,14 @@ function search() {
             currentTemp.textContent = "Temp: " + currentCityTemp + " °F";
             currentWind.textContent = "Wind: " + currentCityWind + " MPH";
             currentHumidity.textContent = "Humidity: " + currentCityHumidity + " %";
+
         });
 
     // displays cards with 5 day forecast of selected city +
     // find what is the 5 day forecast in the fetch +
     // create cards with li for each weather condition through javascript (id=card for ul) all in div(id= cards-container) +
+
+    // BUG: 5 cards are produced every time a search results occurs. FIX: add the cards and their contents so they are just replaced instead of appended +
 
     var secondQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIKey;
     fetch(secondQueryURL)
@@ -86,117 +96,190 @@ function search() {
         })
         .then(function (data) {
             console.log(data);
-            // Creates cards for 5 day forecast 
-            var forecastCards1 = document.createElement('ul');
-            forecastCards1.setAttribute("id", "card");
-            var forecastCards2 = document.createElement('ul');
-            forecastCards2.setAttribute("id", "card");
-            var forecastCards3 = document.createElement('ul');
-            forecastCards3.setAttribute("id", "card");
-            var forecastCards4 = document.createElement('ul');
-            forecastCards4.setAttribute("id", "card");
-            var forecastCards5 = document.createElement('ul');
-            forecastCards5.setAttribute("id", "card");
-            cardsContainer.append(forecastCards1);
-            cardsContainer.append(forecastCards2);
-            cardsContainer.append(forecastCards3);
-            cardsContainer.append(forecastCards4);
-            cardsContainer.append(forecastCards5);
+            // Creates cards for 5 day forecast
+            card1.style.display = "flex";
+            card2.style.display = "flex";
+            card3.style.display = "flex";
+            card4.style.display = "flex";
+            card5.style.display = "flex";
+
 
             // Card 1 
-            var forecastCard1Icon = document.createElement('img');
-            forecastCard1Icon.src = "http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png";
-            var forecastCard1Date = document.createElement('li');
-            forecastCard1Date.textContent = moment(data.list[0].dt_txt).format('MM/DD/YYYY');
-            var forecastCard1Temp = document.createElement('li');
-            forecastCard1Temp.textContent = "Temp: " + data.list[0].main.temp + " °F";
-            var forecastCard1Wind = document.createElement('li');
-            forecastCard1Wind.textContent = "Wind: " + data.list[0].wind.speed + " MPH";
-            var forecastCard1Humidity = document.createElement('li');
-            forecastCard1Humidity.textContent = "Humidity: " + data.list[0].main.humidity + " %";
-            forecastCards1.append(forecastCard1Icon);
-            forecastCards1.append(forecastCard1Date);
-            forecastCards1.append(forecastCard1Temp);
-            forecastCards1.append(forecastCard1Wind);
-            forecastCards1.append(forecastCard1Humidity);
+            var forecastCard1Icon = document.querySelector("#forecast-icon-1");
+            forecastCard1Icon.src = "http://openweathermap.org/img/w/" + data.list[5].weather[0].icon + ".png";
+            var forecastCard1Date = document.querySelector("#forecast-date-1")
+            forecastCard1Date.textContent = moment(data.list[5].dt_txt).format('MM/DD/YYYY');
+            var forecastCard1Temp = document.querySelector("#forecast-temp-1")
+            forecastCard1Temp.textContent = "Temp: " + data.list[5].main.temp + " °F";
+            var forecastCard1Wind = document.querySelector("#forecast-wind-1")
+            forecastCard1Wind.textContent = "Wind: " + data.list[5].wind.speed + " MPH";
+            var forecastCard1Humidity = document.querySelector("#forecast-humidity-1")
+            forecastCard1Humidity.textContent = "Humidity: " + data.list[5].main.humidity + " %";
 
             // card 2 
-            var forecastCard2Icon = document.createElement('img');
-            forecastCard2Icon.src = "http://openweathermap.org/img/w/" + data.list[8].weather[0].icon + ".png";
-            var forecastCard2Date = document.createElement('li');
-            forecastCard2Date.textContent = moment(data.list[8].dt_txt).format('MM/DD/YYYY');
-            var forecastCard2Temp = document.createElement('li');
-            forecastCard2Temp.textContent = "Temp: " + data.list[8].main.temp + " °F";
-            var forecastCard2Wind = document.createElement('li');
-            forecastCard2Wind.textContent = "Wind: " + data.list[8].wind.speed + " MPH";
-            var forecastCard2Humidity = document.createElement('li');
-            forecastCard2Humidity.textContent = "Humidity: " + data.list[8].main.humidity + " %";
-            forecastCards2.append(forecastCard2Icon);
-            forecastCards2.append(forecastCard2Date);
-            forecastCards2.append(forecastCard2Temp);
-            forecastCards2.append(forecastCard2Wind);
-            forecastCards2.append(forecastCard2Humidity);
+            var forecastCard2Icon = document.querySelector("#forecast-icon-2");
+            forecastCard2Icon.src = "http://openweathermap.org/img/w/" + data.list[13].weather[0].icon + ".png";
+            var forecastCard2Date = document.querySelector("#forecast-date-2")
+            forecastCard2Date.textContent = moment(data.list[13].dt_txt).format('MM/DD/YYYY');
+            var forecastCard2Temp = document.querySelector("#forecast-temp-2")
+            forecastCard2Temp.textContent = "Temp: " + data.list[13].main.temp + " °F";
+            var forecastCard2Wind = document.querySelector("#forecast-wind-2")
+            forecastCard2Wind.textContent = "Wind: " + data.list[13].wind.speed + " MPH";
+            var forecastCard2Humidity = document.querySelector("#forecast-humidity-2")
+            forecastCard2Humidity.textContent = "Humidity: " + data.list[13].main.humidity + " %";
 
             // card 3 
-            var forecastCard3Icon = document.createElement('img');
-            forecastCard3Icon.src = "http://openweathermap.org/img/w/" + data.list[16].weather[0].icon + ".png";
-            var forecastCard3Date = document.createElement('li');
-            forecastCard3Date.textContent = moment(data.list[16].dt_txt).format('MM/DD/YYYY');
-            var forecastCard3Temp = document.createElement('li');
-            forecastCard3Temp.textContent = "Temp: " + data.list[16].main.temp + " °F";
-            var forecastCard3Wind = document.createElement('li');
-            forecastCard3Wind.textContent = "Wind: " + data.list[16].wind.speed + " MPH";
-            var forecastCard3Humidity = document.createElement('li');
-            forecastCard3Humidity.textContent = "Humidity: " + data.list[16].main.humidity + " %";
-            forecastCards3.append(forecastCard3Icon);
-            forecastCards3.append(forecastCard3Date);
-            forecastCards3.append(forecastCard3Temp);
-            forecastCards3.append(forecastCard3Wind);
-            forecastCards3.append(forecastCard3Humidity);
-            data.list[16]
+            var forecastCard3Icon = document.querySelector("#forecast-icon-3");
+            forecastCard3Icon.src = "http://openweathermap.org/img/w/" + data.list[21].weather[0].icon + ".png";
+            var forecastCard3Date = document.querySelector("#forecast-date-3")
+            forecastCard3Date.textContent = moment(data.list[21].dt_txt).format('MM/DD/YYYY');
+            var forecastCard3Temp = document.querySelector("#forecast-temp-3");
+            forecastCard3Temp.textContent = "Temp: " + data.list[21].main.temp + " °F";
+            var forecastCard3Wind = document.querySelector("#forecast-wind-3");
+            forecastCard3Wind.textContent = "Wind: " + data.list[21].wind.speed + " MPH";
+            var forecastCard3Humidity = document.querySelector("#forecast-humidity-3");
+            forecastCard3Humidity.textContent = "Humidity: " + data.list[21].main.humidity + " %";
 
             // card 4 
-            var forecastCard4Icon = document.createElement('img');
-            forecastCard4Icon.src = "http://openweathermap.org/img/w/" + data.list[24].weather[0].icon + ".png";
-            var forecastCard4Date = document.createElement('li');
-            forecastCard4Date.textContent = moment(data.list[24].dt_txt).format('MM/DD/YYYY');
-            var forecastCard4Temp = document.createElement('li');
-            forecastCard4Temp.textContent = "Temp: " + data.list[24].main.temp + " °F";
-            var forecastCard4Wind = document.createElement('li');
-            forecastCard4Wind.textContent = "Wind: " + data.list[24].wind.speed + " MPH";
-            var forecastCard4Humidity = document.createElement('li');
-            forecastCard4Humidity.textContent = "Humidity: " + data.list[24].main.humidity + " %";
-            forecastCards4.append(forecastCard4Icon);
-            forecastCards4.append(forecastCard4Date);
-            forecastCards4.append(forecastCard4Temp);
-            forecastCards4.append(forecastCard4Wind);
-            forecastCards4.append(forecastCard4Humidity);
-            data.list[24]
+            var forecastCard4Icon = document.querySelector("#forecast-icon-4");
+            forecastCard4Icon.src = "http://openweathermap.org/img/w/" + data.list[29].weather[0].icon + ".png";
+            var forecastCard4Date = document.querySelector("#forecast-date-4")
+            forecastCard4Date.textContent = moment(data.list[29].dt_txt).format('MM/DD/YYYY');
+            var forecastCard4Temp = document.querySelector("#forecast-temp-4")
+            forecastCard4Temp.textContent = "Temp: " + data.list[29].main.temp + " °F";
+            var forecastCard4Wind = document.querySelector("#forecast-wind-4")
+            forecastCard4Wind.textContent = "Wind: " + data.list[29].wind.speed + " MPH";
+            var forecastCard4Humidity = document.querySelector("#forecast-humidity-4")
+            forecastCard4Humidity.textContent = "Humidity: " + data.list[29].main.humidity + " %";
 
             // card 5 
-            var forecastCard5Icon = document.createElement('img');
-            forecastCard5Icon.src = "http://openweathermap.org/img/w/" + data.list[32].weather[0].icon + ".png";
-            var forecastCard5Date = document.createElement('li');
-            forecastCard5Date.textContent = moment(data.list[32].dt_txt).format('MM/DD/YYYY');
-            var forecastCard5Temp = document.createElement('li');
-            forecastCard5Temp.textContent = "Temp: " + data.list[32].main.temp + " °F";
-            var forecastCard5Wind = document.createElement('li');
-            forecastCard5Wind.textContent = "Wind: " + data.list[32].wind.speed + " MPH";
-            var forecastCard5Humidity = document.createElement('li');
-            forecastCard5Humidity.textContent = "Humidity: " + data.list[32].main.humidity + " %";
-            forecastCards5.append(forecastCard5Icon);
-            forecastCards5.append(forecastCard5Date);
-            forecastCards5.append(forecastCard5Temp);
-            forecastCards5.append(forecastCard5Wind);
-            forecastCards5.append(forecastCard5Humidity);
-            data.list[32]
+            var forecastCard5Icon = document.querySelector("#forecast-icon-5");
+            forecastCard5Icon.src = "http://openweathermap.org/img/w/" + data.list[37].weather[0].icon + ".png";
+            var forecastCard5Date = document.querySelector("#forecast-date-5")
+            forecastCard5Date.textContent = moment(data.list[37].dt_txt).format('MM/DD/YYYY');
+            var forecastCard5Temp = document.querySelector("#forecast-temp-5")
+            forecastCard5Temp.textContent = "Temp: " + data.list[37].main.temp + " °F";
+            var forecastCard5Wind = document.querySelector("#forecast-wind-5")
+            forecastCard5Wind.textContent = "Wind: " + data.list[37].wind.speed + " MPH";
+            var forecastCard5Humidity = document.querySelector("#forecast-humidity-5")
+            forecastCard5Humidity.textContent = "Humidity: " + data.list[37].main.humidity + " %";
 
         });
 
-    function research() {
-        var x = this.innerHTML;
-        console.log(x);
-    };
+};
+
+function research() {
+    var x = this.innerHTML;
+    console.log(x);
+    city = x;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
+    fetch(queryURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data)
+            // displays current weather conditions (city name, date, weather icon, temperature, humidity, // wind speed)
+            // 1. find which data equals each necessary requirement +
+            var currentCityName = data.name;
+            var currentCityTemp = data.main.temp;
+            var currentCityIcon = data.weather[0].icon;
+            var currentCityHumidity = data.main.humidity;
+            var currentCityWind = data.wind.speed;
+            var currentDate = Date(Date.UTC(data.dt));
+            var easyDate = moment(currentDate).format('MM/DD/YYYY')
+            var iconurl = "http://openweathermap.org/img/w/" + currentCityIcon + ".png";
+            icon.setAttribute("src", iconurl);
+            icon.style.display = "block";
+
+            currentName.textContent = currentCityName + " " + "(" + easyDate + ")";
+            currentTemp.textContent = "Temp: " + currentCityTemp + " °F";
+            currentWind.textContent = "Wind: " + currentCityWind + " MPH";
+            currentHumidity.textContent = "Humidity: " + currentCityHumidity + " %";
+
+        });
+
+    // displays cards with 5 day forecast of selected city +
+    // find what is the 5 day forecast in the fetch +
+    // create cards with li for each weather condition through javascript (id=card for ul) all in div(id= cards-container) +
+
+    // BUG: 5 cards are produced every time a search results occurs. FIX: add the cards and their contents so they are just replaced instead of appended +
+
+    var secondQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIKey;
+    fetch(secondQueryURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            // Creates cards for 5 day forecast
+            card1.style.display = "flex";
+            card2.style.display = "flex";
+            card3.style.display = "flex";
+            card4.style.display = "flex";
+            card5.style.display = "flex";
+
+
+            // Card 1 
+            var forecastCard1Icon = document.querySelector("#forecast-icon-1");
+            forecastCard1Icon.src = "http://openweathermap.org/img/w/" + data.list[5].weather[0].icon + ".png";
+            var forecastCard1Date = document.querySelector("#forecast-date-1")
+            forecastCard1Date.textContent = moment(data.list[5].dt_txt).format('MM/DD/YYYY');
+            var forecastCard1Temp = document.querySelector("#forecast-temp-1")
+            forecastCard1Temp.textContent = "Temp: " + data.list[5].main.temp + " °F";
+            var forecastCard1Wind = document.querySelector("#forecast-wind-1")
+            forecastCard1Wind.textContent = "Wind: " + data.list[5].wind.speed + " MPH";
+            var forecastCard1Humidity = document.querySelector("#forecast-humidity-1")
+            forecastCard1Humidity.textContent = "Humidity: " + data.list[5].main.humidity + " %";
+
+            // card 2 
+            var forecastCard2Icon = document.querySelector("#forecast-icon-2");
+            forecastCard2Icon.src = "http://openweathermap.org/img/w/" + data.list[13].weather[0].icon + ".png";
+            var forecastCard2Date = document.querySelector("#forecast-date-2")
+            forecastCard2Date.textContent = moment(data.list[13].dt_txt).format('MM/DD/YYYY');
+            var forecastCard2Temp = document.querySelector("#forecast-temp-2")
+            forecastCard2Temp.textContent = "Temp: " + data.list[13].main.temp + " °F";
+            var forecastCard2Wind = document.querySelector("#forecast-wind-2")
+            forecastCard2Wind.textContent = "Wind: " + data.list[13].wind.speed + " MPH";
+            var forecastCard2Humidity = document.querySelector("#forecast-humidity-2")
+            forecastCard2Humidity.textContent = "Humidity: " + data.list[13].main.humidity + " %";
+
+            // card 3 
+            var forecastCard3Icon = document.querySelector("#forecast-icon-3");
+            forecastCard3Icon.src = "http://openweathermap.org/img/w/" + data.list[21].weather[0].icon + ".png";
+            var forecastCard3Date = document.querySelector("#forecast-date-3")
+            forecastCard3Date.textContent = moment(data.list[21].dt_txt).format('MM/DD/YYYY');
+            var forecastCard3Temp = document.querySelector("#forecast-temp-3");
+            forecastCard3Temp.textContent = "Temp: " + data.list[21].main.temp + " °F";
+            var forecastCard3Wind = document.querySelector("#forecast-wind-3");
+            forecastCard3Wind.textContent = "Wind: " + data.list[21].wind.speed + " MPH";
+            var forecastCard3Humidity = document.querySelector("#forecast-humidity-3");
+            forecastCard3Humidity.textContent = "Humidity: " + data.list[21].main.humidity + " %";
+
+            // card 4 
+            var forecastCard4Icon = document.querySelector("#forecast-icon-4");
+            forecastCard4Icon.src = "http://openweathermap.org/img/w/" + data.list[29].weather[0].icon + ".png";
+            var forecastCard4Date = document.querySelector("#forecast-date-4")
+            forecastCard4Date.textContent = moment(data.list[29].dt_txt).format('MM/DD/YYYY');
+            var forecastCard4Temp = document.querySelector("#forecast-temp-4")
+            forecastCard4Temp.textContent = "Temp: " + data.list[29].main.temp + " °F";
+            var forecastCard4Wind = document.querySelector("#forecast-wind-4")
+            forecastCard4Wind.textContent = "Wind: " + data.list[29].wind.speed + " MPH";
+            var forecastCard4Humidity = document.querySelector("#forecast-humidity-4")
+            forecastCard4Humidity.textContent = "Humidity: " + data.list[29].main.humidity + " %";
+
+            // card 5 
+            var forecastCard5Icon = document.querySelector("#forecast-icon-5");
+            forecastCard5Icon.src = "http://openweathermap.org/img/w/" + data.list[37].weather[0].icon + ".png";
+            var forecastCard5Date = document.querySelector("#forecast-date-5")
+            forecastCard5Date.textContent = moment(data.list[37].dt_txt).format('MM/DD/YYYY');
+            var forecastCard5Temp = document.querySelector("#forecast-temp-5")
+            forecastCard5Temp.textContent = "Temp: " + data.list[37].main.temp + " °F";
+            var forecastCard5Wind = document.querySelector("#forecast-wind-5")
+            forecastCard5Wind.textContent = "Wind: " + data.list[37].wind.speed + " MPH";
+            var forecastCard5Humidity = document.querySelector("#forecast-humidity-5")
+            forecastCard5Humidity.textContent = "Humidity: " + data.list[37].main.humidity + " %";
+        });
 };
 
 // Gets the searchbtn to work with input

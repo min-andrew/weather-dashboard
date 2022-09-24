@@ -19,11 +19,11 @@
   <main>
     <section class="search">
       <h2>Search for a City:</h2>
-      <form id="form">
+      <form id="form" onsubmit="search()">
         <input id="search-form" type="text" placeholder="Search by City" />
         <input id="searchbtn" type="button" value="Search" />
       </form>
-      <form class="search-history"></form>
+      <form class="search-history" onsubmit="return false"></form>
     </section>
     <section class="current-weather">
       <article id="city-banner">
@@ -37,7 +37,43 @@
       </article>
       <article id="cards-forecast">
         <h3>5-Day Forecast:</h3>
-        <div id="cards-container"></div>
+        <div id="cards-container">
+          <ul class="card1">
+            <img src="" id="forecast-icon-1">
+            <li id="forecast-date-1"></li>
+            <li id="forecast-temp-1"></li>
+            <li id="forecast-wind-1"></li>
+            <li id="forecast-humidity-1"></li>
+          </ul>
+          <ul class="card2">
+            <img src="" id="forecast-icon-2">
+            <li id="forecast-date-2"></li>
+            <li id="forecast-temp-2"></li>
+            <li id="forecast-wind-2"></li>
+            <li id="forecast-humidity-2"></li>
+          </ul>
+          <ul class="card3">
+            <img src="" id="forecast-icon-3">
+            <li id="forecast-date-3"></li>
+            <li id="forecast-temp-3"></li>
+            <li id="forecast-wind-3"></li>
+            <li id="forecast-humidity-3"></li>
+          </ul>
+          <ul class="card4">
+            <img src="" id="forecast-icon-4">
+            <li id="forecast-date-4"></li>
+            <li id="forecast-temp-4"></li>
+            <li id="forecast-wind-4"></li>
+            <li id="forecast-humidity-4"></li>
+          </ul>
+          <ul class="card5">
+            <img src="" id="forecast-icon-5">
+            <li id="forecast-date-5"></li>
+            <li id="forecast-temp-5"></li>
+            <li id="forecast-wind-5"></li>
+            <li id="forecast-humidity-5"></li>
+          </ul>
+        </div>
       </article>
     </section>
   </main>
