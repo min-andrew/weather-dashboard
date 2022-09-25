@@ -1,85 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather Dashboard</title>
-  <link rel="stylesheet" href="./assets/style.css" />
-</head>
+  <body>
+    <header>
+      <nav>
+        <h1>Weather Dashboard</h1>
+      </nav>
+    </header>
 
-<body>
-  <header>
-    <nav>
-      <h1>Weather Dashboard</h1>
-    </nav>
-  </header>
+    <main>
+      <section class="search">
+        <h2>Search for a City:</h2>
+        <form id="form" onsubmit="return false">
+          <input id="search-form" type="text" placeholder="Search by City" />
+          <input id="searchbtn" type="submit" value="Search" />
+        </form>
+        <form class="search-history" onsubmit="return false"></form>
+      </section>
+      <section class="current-weather">
+        <article id="city-banner">
+          <div id="weather-icon">
+            <h3 id="current-city">Search for a city!</h3>
+            <img id="icon" src="" alt="Weather icon" />
+          </div>
+          <p id="temp">Temp:</p>
+          <p id="wind">Wind:</p>
+          <p id="humidity">Humitidy:</p>
+        </article>
+        <article id="cards-forecast">
+          <h3>5-Day Forecast:</h3>
+          <div id="cards-container">
+            <ul class="card1">
+              <img src="" id="forecast-icon-1" />
+              <li id="forecast-date-1"></li>
+              <li id="forecast-temp-1"></li>
+              <li id="forecast-wind-1"></li>
+              <li id="forecast-humidity-1"></li>
+            </ul>
+            <ul class="card2">
+              <img src="" id="forecast-icon-2" />
+              <li id="forecast-date-2"></li>
+              <li id="forecast-temp-2"></li>
+              <li id="forecast-wind-2"></li>
+              <li id="forecast-humidity-2"></li>
+            </ul>
+            <ul class="card3">
+              <img src="" id="forecast-icon-3" />
+              <li id="forecast-date-3"></li>
+              <li id="forecast-temp-3"></li>
+              <li id="forecast-wind-3"></li>
+              <li id="forecast-humidity-3"></li>
+            </ul>
+            <ul class="card4">
+              <img src="" id="forecast-icon-4" />
+              <li id="forecast-date-4"></li>
+              <li id="forecast-temp-4"></li>
+              <li id="forecast-wind-4"></li>
+              <li id="forecast-humidity-4"></li>
+            </ul>
+            <ul class="card5">
+              <img src="" id="forecast-icon-5" />
+              <li id="forecast-date-5"></li>
+              <li id="forecast-temp-5"></li>
+              <li id="forecast-wind-5"></li>
+              <li id="forecast-humidity-5"></li>
+            </ul>
+          </div>
+        </article>
+      </section>
+    </main>
 
-  <main>
-    <section class="search">
-      <h2>Search for a City:</h2>
-      <form id="form" onsubmit="search()">
-        <input id="search-form" type="text" placeholder="Search by City" />
-        <input id="searchbtn" type="button" value="Search" />
-      </form>
-      <form class="search-history" onsubmit="return false"></form>
-    </section>
-    <section class="current-weather">
-      <article id="city-banner">
-        <div id="weather-icon">
-          <h3 id="current-city">Search for a city!</h3>
-          <img id="icon" src="" alt="Weather icon">
-        </div>
-        <p id="temp">Temp:</p>
-        <p id="wind">Wind:</p>
-        <p id="humidity">Humitidy:</p>
-      </article>
-      <article id="cards-forecast">
-        <h3>5-Day Forecast:</h3>
-        <div id="cards-container">
-          <ul class="card1">
-            <img src="" id="forecast-icon-1">
-            <li id="forecast-date-1"></li>
-            <li id="forecast-temp-1"></li>
-            <li id="forecast-wind-1"></li>
-            <li id="forecast-humidity-1"></li>
-          </ul>
-          <ul class="card2">
-            <img src="" id="forecast-icon-2">
-            <li id="forecast-date-2"></li>
-            <li id="forecast-temp-2"></li>
-            <li id="forecast-wind-2"></li>
-            <li id="forecast-humidity-2"></li>
-          </ul>
-          <ul class="card3">
-            <img src="" id="forecast-icon-3">
-            <li id="forecast-date-3"></li>
-            <li id="forecast-temp-3"></li>
-            <li id="forecast-wind-3"></li>
-            <li id="forecast-humidity-3"></li>
-          </ul>
-          <ul class="card4">
-            <img src="" id="forecast-icon-4">
-            <li id="forecast-date-4"></li>
-            <li id="forecast-temp-4"></li>
-            <li id="forecast-wind-4"></li>
-            <li id="forecast-humidity-4"></li>
-          </ul>
-          <ul class="card5">
-            <img src="" id="forecast-icon-5">
-            <li id="forecast-date-5"></li>
-            <li id="forecast-temp-5"></li>
-            <li id="forecast-wind-5"></li>
-            <li id="forecast-humidity-5"></li>
-          </ul>
-        </div>
-      </article>
-    </section>
-  </main>
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-  <script src="./assets/script.js"></script>
-</body>
-
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    ></script>
+    <script src="./assets/script.js"></script>
+  </body>
 </html>
